@@ -22,7 +22,7 @@ Before installing the Anypoint CLI, ensure your environment meets the following 
 
 As discussed in the article [Installing Anypoint CLI 4.x](https://docs.mulesoft.com/anypoint-cli/latest/install), you must first install `Node.js` and `npm` before installing the Anypoint CLI. As implied in this article, the suggested approach is to follow the instructions provided on the [Download Node.js](https://nodejs.org/en/download/) web page. This web page enables you to pick the `Node.js` version, target operating system, installation method, and package manager, and it tailors the installation instructions accordingly. Optionally, you can download a prebuilt installation package specific to your target operating system. 
 
-<img src="assets/images/cli-install-2-1-01-download-node-js.png" style="width:6.5in;height:4.3in"/>
+<img src="assets/images/cli-install-2-1-01-download-node-js.png" style="width:80%;max-width:750px;"/>
 
 > [!NOTE]
 >
@@ -42,7 +42,7 @@ As a smoke test, run the following command to verify that the installation compl
 anypoint-cli-v4 version
 ```
 
-<img src="assets/images/cli-install-2-1-02-anypoint-cli-version.png" style="width:4in;height:0.6in"/>
+<img src="assets/images/cli-install-2-1-02-anypoint-cli-version.png" style="width:80%;max-width:750px;"/>
 
 By default, no plugins are installed with the Anypoint CLI core package. To follow the principle of least privilege, install only the **API Manager** and **Exchange** plugins using the command below:
 
@@ -55,7 +55,7 @@ To verify that the plugins installed successfully, run:
 anypoint-cli-v4 plugins
 ```
 
-<img src="assets/images/cli-install-2-1-03-anypoint-cli-plugins.png" style="width:4in;height:0.9in"/>
+<img src="assets/images/cli-install-2-1-03-anypoint-cli-plugins.png" style="width:80%;max-width:750px;"/>
 
 ## Next Steps
 
