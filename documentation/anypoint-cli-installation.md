@@ -59,4 +59,4 @@ anypoint-cli-v4 plugins
 
 ## Next Steps
 
-The Anypoint CLI and required plugins are installed. Next, you need to configure authentication for executing Anypoint CLI commands. For details, see the Anypoint CLI Authentication for CI/CD Pipelines document.
+The Anypoint CLI and required plugins are installed. Next, you need to configure authentication for executing Anypoint CLI commands. For details, see the [Anypoint CLI Authentication for CI/CD Pipelines](anypoint-cli-authentication.md) document.
