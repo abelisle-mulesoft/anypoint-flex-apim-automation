@@ -1,4 +1,4 @@
-# Introduction
+# Anypoint CLI Authentication for CI/CD Pipelines
 
 ## Abstract
 
@@ -8,25 +8,23 @@ This informal document discusses three authentication approaches when using the 
 
 The purpose of this document is to complement the documentation that MuleSoft publishes, not to replace it. It aims to provide additional documentation and examples to help you get started quickly.
 
-# Authenticating to the Anypoint CLI
-
 ## Overview
 
 The article [Authentication to the Anypoint Platform CLI](https://docs.mulesoft.com/anypoint-cli/latest/) outlines three authentication approaches: using a bearer token, a client ID and client secret, or a username and password. However, it overlooks the critical importance of applying the principle of least privilege and lacks practical specificity. Each authentication method can vary in real-world applications. For example, depending on your Anypoint Platform configuration, you might use a personal or dedicated account (i.e., username and password), a connected app, or a SAML assertion to generate a bearer token. 
 
-The purpose of this repository is to lay the groundwork for CI/CD pipelines that automate API management for Anypoint Flex Gateway. Although bearer tokens provide short-lived, scoped access, they introduce additional steps without significantly enhancing security, since initial authentication and secure credential management remain equally critical. Whether using accounts, connected apps, or SAML assertions to generate tokens, the fundamental security posture depends on how these credentials are handled in the pipeline. 
+The purpose of this repository is to lay the groundwork for CI/CD pipelines that automate API management for Anypoint Flex Gateway. Although bearer tokens provide short-lived, scoped access, they introduce additional steps without meaningfully improving overall security, since initial authentication and secure credential management remain the main risk factors. Whether using accounts, connected apps, or SAML assertions to generate tokens, the fundamental security posture depends on how these credentials are handled in the pipeline. 
 
 While authenticating to the Anypoint CLI with a username and password is possible, it is generally not recommended for CI/CD pipelines. Personal accounts often introduce unnecessary permissions and make password rotation more difficult. A dedicated account with limited permissions helps mitigate risks but still involves securely storing long-lived credentials and managing their rotation. Username and password authentication is best reserved for ad-hoc testing or temporary manual use. 
 
-A connected app with a client ID and client secret is well-suited for CI/CD pipelines, as it avoids user credential dependency and enables the principle of least privilege. A dedicated connected app for automation allows scoped access, limited permissions, and straightforward credential rotation. Although the client secret is long-lived and requires secure storage, this method is safer, more maintainable, and auditable, without the need for frequent token refreshes.
+A connected app with a client ID and client secret is best suited for CI/CD pipelines. It removes dependency on user credentials, enforces least privilege, and simplifies long-term maintenance. A dedicated connected app for automation allows scoped access, limited permissions, and straightforward credential rotation. For production pipelines, store the client secret in a secure vault such as Azure Key Vault, AWS Secrets Manager, or GitHub Actions Secrets. Although the client secret is long-lived and requires secure storage, this method is safer, more maintainable, and auditable, without the need for frequent token refreshes.
 
 ## Summary of Authentication Methods
 
-| Authentication Method | Pros | Cons | Recommended Use |
-|-----------------------|------|------|-----------------|
-| **Bearer Token** | Short-lived, scoped access | Requires other credentials to generate; expires quickly | Rarely used in CI/CD |
-| **Client ID and Secret** | Best for automation; supports least privilege | Requires secure secret storage |  Preferred for CI/CD |
-| **Username and Password** | Simple for ad-hoc use | Long-lived, hard to rotate, risky for automation | Manual testing only |
+| Authentication Method   | Pros                                          | Cons                                                    | Recommended Use                        |
+| ----------------------- | --------------------------------------------- | ------------------------------------------------------- | -------------------------------------- |
+| **Bearer Token**        | Short-lived, scoped access                    | Requires other credentials to generate; expires quickly | Rarely used in CI/CD                   |
+| **Client ID & Secret**  | Best for automation; supports least privilege | Requires secure secret storage                          | :white_check_mark: Preferred for CI/CD |
+| **Username & Password** | Simple for ad-hoc use                         | Long-lived, hard to rotate, risky for automation        | Manual testing only                    |
 
 ## Using a Connected App with the Anypoint CLI
 
@@ -48,24 +46,16 @@ Several articles within the MuleSoft documentation, as well as resources availab
   - Select the option **App acts on its own behalf (client credentials)** for the **Type**, and
   - Click the **Add Scopes** button.
 
-<img src="assets/images/cli-authen-2-3-01-create-app-form.png" style="margin-left:60px;width:6.5in;height:3.2in"/>
+<img src="../assets/images/cli-authn-2-3-01-create-app-form.png" style="width:80%;max-width:750px;"/>
 
 - In the **Add Scopes** dialog:
   - For step 1, **Add Scopes**, select the scopes listed in the table below.
 
-<img src="assets/images/cli-authn-2-3-02-create-app-add-scopes.png" style="margin-left:60px;width:4.0in;height:4.5in"/>
-
-<style>
-  table {
-    margin-left:60px;
-  }
-</style>
+<img src="../assets/images/cli-authn-2-3-02-create-app-add-scopes.png" style="width:80%;max-width:750px;"/>
 
 | Scopes   | Roles                |
 | -------- | -------------------- |
 | Exchange | Exchange Contributor |
-|          |                      |
-|          |                      |
 
 
   - For step 2, **Select Business Groups**, select all the relevant business groups; i.e., where you plan to register and manage APIs.
@@ -73,15 +63,34 @@ Several articles within the MuleSoft documentation, as well as resources availab
 - Click the **Save** button.
 - Finally, on the **Connected Apps** page, you can copy the client ID and client secret by clicking the **Copy Id** and **Copy Secret** buttons, respectively. You will need those values for authentication when executing Anypoint CLI commands.
 
-<img src="assets/images/cli-authn-2-3-05-client-id-client-secret.png" style="margin-left:30px;width:6.5in;height:3.0in"/>
+<img src="../assets/images/cli-authn-2-3-05-client-id-client-secret.png" style="width:80%;max-width:750px;"/>
+
+## Where This Fits in the Lifecycle
+
+This document covers **authentication prerequisites** for automating API management with the Anypoint CLI.
+
+Authentication must be configured before executing any lifecycle stage that interacts with the Anypoint Platform, including:
+
+- Publishing assets to Anypoint Exchange
+- Registering APIs in API Manager
+- Deploying APIs to Anypoint Flex Gateway
+- Applying policies and promoting APIs across environments
+
+Once authentication is in place, continue with the lifecycle starting at:
+
+- [02-exchange-cataloging/publish-assets-to-anypoint-exchange.md](../02-exchange-cataloging/publish-assets-to-anypoint-exchange.md)
+
+For a high-level view of the full automation lifecycle and how these stages relate to one another, see:
+
+- [01-lifecycle-overview/README.md](../01-lifecycle-overview/README.md)
+
+
 
 # References
 
 - [1] https://docs.mulesoft.com/access-management/creating-connected-apps-dev#create-connected-app-on-its-own-behalf
 
-
-
-# Additionnal Resources
+# Additional Resources
 
 - Authentication to the Anypoint Platform CLI - https://docs.mulesoft.com/anypoint-cli/latest/auth
 - How to generate your Authorization Bearer token for Anypoint Platform - https://help.salesforce.com/s/articleView?id=001115323&type=1
