@@ -2,8 +2,6 @@
 
 This document describes the **automation lifecycle** used by this repository for managing APIs with **Anypoint Flex Gateway** through the **Anypoint Platform Command Line Interface (CLI)**. It establishes the conceptual backbone of the repository and explains how the folders map to lifecycle stages. The goal is to provide a clear mental model before implementation details. This repository is **self-contained**. Familiarity with the accompanying MuleSoft blog article can help with background and context, but is not required to use the material here.
 
-------
-
 ## Lifecycle at a Glance
 
 Automating API management for Anypoint Flex Gateway typically follows this sequence:
@@ -23,8 +21,6 @@ Automating API management for Anypoint Flex Gateway typically follows this seque
 
 Each stage produces identifiers and state used by later stages. Automation scripts must preserve and reuse this information to stay reliable and repeatable.
 
-------
-
 ## Repository Structure and Lifecycle Mapping
 
 The repository is organized around the lifecycle stages above. Each top-level folder corresponds to a specific stage.
@@ -42,8 +38,6 @@ The repository is organized around the lifecycle stages above. Each top-level fo
 
 Folders marked as *Not started* are placeholders and will be populated incrementally.
 
-------
-
 ## Document Structure Within a Lifecycle Stage
 
 When implemented, each lifecycle stage will include:
@@ -52,8 +46,6 @@ When implemented, each lifecycle stage will include:
 - A **CLI playbook** containing tested, copy-ready command patterns suitable for automation.
 
 This separation keeps conceptual guidance distinct from examples.
-
-------
 
 ## How to Use This Repository Today
 
@@ -65,8 +57,6 @@ In the current state of the repository:
 
 Each completed section stands on its own, with clear placement in the overall lifecycle.
 
-------
-
 ## Design Principles
 
 The content in this repository follows a set of guiding principles:
@@ -76,8 +66,6 @@ The content in this repository follows a set of guiding principles:
 - **Clear separation of concepts and execution**.
 - **Alignment with MuleSoft documentation**, without duplicating it.
 - **Practical, field-tested guidance** over theoretical completeness.
-
-------
 
 ## Context and Related Material
 
