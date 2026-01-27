@@ -1,75 +1,84 @@
 # Lifecycle Overview – Automating API Management for Flex Gateway
 
-This repository complements the MuleSoft blog article **Automating API Management for Flex Gateway with the Anypoint CLI**.
+This document describes the **automation lifecycle** used by this repository for managing APIs with **Anypoint Flex Gateway** through the **Anypoint Platform Command Line Interface (CLI)**. It establishes the conceptual backbone of the repository and explains how the folders map to lifecycle stages. The goal is to provide a clear mental model before implementation details. This repository is **self-contained**. Familiarity with the accompanying MuleSoft blog article can help with background and context, but is not required to use the material here.
 
-The blog article introduces *why* and *what* to automate in API management with Flex Gateway: the lifecycle, its rationale, and how Anypoint Exchange, Anypoint API Manager, and Anypoint Flex Gateway fit together.
-
-This repository focuses on *how*. It provides practical guidance, tested CLI examples, and patterns for implementing that lifecycle using the Anypoint Platform Command Line Interface (CLI).
+------
 
 ## Lifecycle at a Glance
 
-Automating API management for Flex Gateway typically follows this sequence:
+Automating API management for Anypoint Flex Gateway typically follows this sequence:
 
-1. **Source control is the system of record**
-   API specifications and configuration are versioned in the source control system, and new versions trigger automation.
+1. **Prepare tooling and authentication**
+   Install the Anypoint CLI and configure non-interactive authentication.
 2. **Publish versioned assets to Anypoint Exchange**
-   APIs are cataloged as immutable, versioned assets identified by a groupId, assetId, and semantic version (GAV).
-3. **Register APIs in Anypoint API Manager**
-   Published Exchange assets are registered as API instances in a specific environment and associated with Flex Gateway.
+   Catalog API specifications as immutable, versioned assets identified by a groupId, assetId, and semantic version.
+3. **Register APIs in API Manager**
+   Create API instances from Exchange assets and associate them with environments and gateways.
 4. **Deploy APIs to Flex Gateway**
-   API instances are deployed to managed or self-managed Flex Gateway targets.
+   Deploy API instances to managed or self-managed Flex Gateway targets.
 5. **Apply policies and governance**
-   Security, traffic management, and governance policies are applied programmatically.
+   Programmatically apply security, traffic management, and governance policies.
 6. **Promote APIs across environments**
-   Fully configured APIs are promoted through environments, for example, from development to testing.
+   Promote fully configured APIs between environments (for example, development to testing).
 
-Each step depends on identifiers and metadata from the previous one. Automation scripts must preserve and reuse these values to ensure reliability and idempotency.
+Each stage produces identifiers and state used by later stages. Automation scripts must preserve and reuse this information to stay reliable and repeatable.
 
-## How This Repository Is Organized
+------
 
-Each folder in this repository corresponds to one stage of the lifecycle described in the blog article.
+## Repository Structure and Lifecycle Mapping
 
-- **00-prerequisites/**
-  Install and authenticate the Anypoint CLI for non-interactive, CI/CD-friendly usage.
-- **02-exchange-cataloging/**
-  Publish APIs and related assets to Anypoint Exchange.
-- **03-api-manager/**
-  Register APIs in Anypoint API Manager and manage API instances for Flex Gateway.
-- **04-flex-gateway/**
-  Deploy APIs to managed or self-managed Flex Gateway targets.
-- **05-policies-and-promotion/**
-  Apply policies and promote APIs across environments.
-- **06-reference/**
-  Shared concepts, identifier models, and common pitfalls are referenced throughout the repository.
+The repository is organized around the lifecycle stages above. Each top-level folder corresponds to a specific stage.
 
-Within each lifecycle stage, you will typically find:
+| Folder | Lifecycle Stage | Status |
+|------|----------------|--------|
+| `assets/` | Shared diagrams and images | Complete |
+| `00-prerequisites/` | CLI installation and authentication | Complete |
+| `01-lifecycle-overview/` | Lifecycle concepts and structure | Complete |
+| `02-exchange-cataloging/` | Publish assets to Anypoint Exchange | Not started |
+| `03-api-manager/` | Register and manage APIs in API Manager | Not started |
+| `04-flex-gateway/` | Deploy APIs to Flex Gateway | Not started |
+| `05-policies-and-promotion/` | Apply policies and promote APIs | Not started |
+| `06-reference/` | Shared concepts and reference material | Not started |
 
-- A **conceptual guide** explaining mechanics and intent
-- A **CLI workpad** containing tested commands and practical patterns
+Folders marked as *Not started* are placeholders and will be populated incrementally.
 
-## Assumptions and Scope
+------
 
-This repository assumes that:
+## Document Structure Within a Lifecycle Stage
 
-- You are using Anypoint CLI 4.x.
-- Authentication is performed using a connected app or another non-interactive method suitable for automation.
-- Flex Gateway is operating in **connected mode**.
-- CI/CD pipeline design is outside the scope of these documents.
+When implemented, each lifecycle stage will include:
 
-The goal is not to replace MuleSoft’s official documentation but to bridge the gap between product capabilities and real-world automation.
+- **Conceptual documentation** explaining intent, constraints, and lifecycle semantics.
+- A **CLI playbook** containing tested, copy-ready command patterns suitable for automation.
 
-## Where to Start
+This separation keeps conceptual guidance distinct from examples.
 
-If you are new to the repository:
+------
 
-1. Review the prerequisites in folder 00-prerequisites/.
-2. Start with 02-exchange-cataloging/ and follow the lifecycle in order.
-3. Use the workpad documents as reference material when building automation scripts.
+## How to Use This Repository Today
 
-## Relationship to the Blog Article
+In the current state of the repository:
 
-This repository stands on its own as an implementation guide for automating API management with the Anypoint CLI.
+1. Begin with the folder [00-prerequisites](../00-prerequisites) to install the Anypoint CLI and determine your authentication approach.
+2. Use this document (`01-lifecycle-overview/`) to understand the lifecycle and repository structure.
+3. Treat later lifecycle folders as placeholders for upcoming content.
 
-The accompanying MuleSoft blog article provides additional background, context, and architectural perspective on the same lifecycle. If you have already read the article, this repository picks up where it leaves off. If not, the material here remains fully usable on its own.
+Each completed section stands on its own, with clear placement in the overall lifecycle.
 
-The two resources are intentionally aligned, but neither is required to understand or apply the other.
+------
+
+## Design Principles
+
+The content in this repository follows a set of guiding principles:
+
+- **Lifecycle-first organization**, rather than feature-by-feature documentation.
+- **Automation-first mindset**, optimized for scripting and CI/CD usage.
+- **Clear separation of concepts and execution**.
+- **Alignment with MuleSoft documentation**, without duplicating it.
+- **Practical, field-tested guidance** over theoretical completeness.
+
+------
+
+## Context and Related Material
+
+An accompanying MuleSoft blog article introduces the same lifecycle from a higher-level perspective and provides more context on why this approach matters. This repository focuses on **implementation details and automation mechanics**, and remains fully usable on its own.
