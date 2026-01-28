@@ -2,11 +2,11 @@
 
 ## Abstract
 
-This informal document discusses installing the Anypoint Platform Command-Line Interface (CLI), or simply the Anypoint CLI.
+This informal document discusses installing the Anypoint Platform Command-Line Interface (Anypoint CLI).
 
 ## Purpose
 
-This document complements MuleSoft's documentation, not replacing it. It provides additional documentation and examples to help you get started quickly.
+The purpose of this document is to complement MuleSoft’s official documentation, not to replace it. It provides practical guidance for installing the Anypoint CLI. It clarifies system prerequisites, highlights tested versions, and outlines a minimal Anypoint CLI plugin installation to automate the API management lifecycle for Flex Gateway.
 
 ## Overview
 
@@ -14,7 +14,7 @@ Before installing the Anypoint CLI, ensure your environment meets the following 
 
 | Requirement | Recommended / Tested Version | Notes |
 |--------------|---------------------|-------|
-| **Node.js** | 18.x – 22.x (LTS) - see note below. | Officially supported: 18–20. Tested successfully with 22.20.0. |
+| **Node.js** | 18.x – 22.x (LTS) - *see note below*. | Officially supported: 18–20. Tested successfully with 22.20.0. |
 | **npm** | 9.x or later | Tested with version 11.6.2. |
 | **Operating System** | macOS, Linux, or Windows | Choose the appropriate installation method for your OS. |
 
@@ -57,18 +57,22 @@ anypoint-cli-v4 plugins
 
 ## Where This Fits in the Lifecycle
 
-This document covers **installation prerequisites** for working with the Anypoint Platform Command Line Interface (CLI). Installing the Anypoint CLI is a foundational step that must be completed before any lifecycle stage that relies on CLI-based automation, including:
+This document covers installing the Anypoint CLI, required to automate API management. You must install the Anypoint CLI and configure your authentication method before running any CLI commands that interact with the Anypoint Platform, including:
 
-- Authenticating to the Anypoint Platform.
-- Publishing assets to Anypoint Exchange.
+- Publishing versioned APIs to Anypoint Exchange.
 - Registering APIs in Anypoint API Manager.
 - Deploying APIs to Anypoint Flex Gateway.
-- Applying policies and promoting APIs across environments.
+- Applying policies programmatically.
+- Promoting APIs across environments.
 
-Once the CLI is installed, the next step is to configure authentication for automated, non-interactive usage:
+Read [00-prerequisites/anypoint-cli-authentication](./anypoint-cli-authentication.md) for an overview of the three authentication approaches when using the Anypoint CLI.
 
-- [00-prerequisites/anypoint-cli-authentication.md](./anypoint-cli-authentication.md)
+Review [01-lifecycle-overview/README](file:///Users/abelisle/Documents/GitHub/Mule-Docs/anypoint-flex-apim-automation/01-lifecycle-overview/README.md) for a concise explanation of the API management automation lifecycle and how these stages relate to one another.
 
-For a high-level view of the full automation lifecycle and how these stages relate to one another, see:
+# Additional Resources
 
-- [01-lifecycle-overview/README.md](../01-lifecycle-overview/README.md)
+- Download Node.js - https://nodejs.org/en/download/
+- Latest stable version of npm - https://docs.npmjs.com/try-the-latest-stable-version-of-npm
+- Install Anypoint CLI 4.x - https://docs.mulesoft.com/anypoint-cli/latest/install
+- Anypoint CLI List of Plugins - https://docs.mulesoft.com/anypoint-cli/latest/install#plugin-list
+- Anypoint CLI 4.x List of Commands - https://docs.mulesoft.com/anypoint-cli/latest/anypoint-platform-cli-commands

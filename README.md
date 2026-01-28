@@ -1,15 +1,21 @@
 # Automating API Management for Flex Gateway
 
-This repository contains **work-in-progress documentation and examples** for automating API management for **Anypoint Flex Gateway** with the **Anypoint Platform Command Line Interface (CLI)**.
+## Abstract
 
-The goal of this repository is to provide a **practical, lifecycle-oriented companion** to the MuleSoft blog article **Automating API Management for Flex Gateway with the Anypoint CLI**. It focuses on real-world automation patterns rather than exhaustive reference documentation.
+This repository contains **work-in-progress documentation and examples** for automating API management for Anypoint Flex Gateway with the Anypoint Platform Command Line Interface (CLI).
+
+## Purpose
+
+The purpose of this repository is to complement MuleSoft’s official documentation, not to replace it. Its goal is to provide a practical, lifecycle-oriented companion to the MuleSoft blog article *Automating API Management for Flex Gateway with the Anypoint CLI*. It focuses on real-world automation patterns instead of exhaustive reference documentation.
+
+The accompanying MuleSoft blog article explains *why* automating API management for Flex Gateway matters and how the Anypoint Platform components fit together. This repository focuses on implementing that lifecycle using the Anypoint CLI. Both resources complement each other, but this repository can also be used on its own.
 
 ## Repository Status
 
 > [!IMPORTANT]
 > This repository is evolving and should be considered **work in progress**.
 
-Only the following sections are currently complete and intended for early consumption:
+Only the following sections are currently stable and intended for early consumption::
 
 - assets/
 - 00-prerequisites/
@@ -29,38 +35,35 @@ These folders will be populated as the repository evolves.
 
 When complete, this repository will document how to automate the full API management lifecycle for Flex Gateway, including:
 
-- Publishing versioned API assets to Anypoint Exchange.
-- Registering APIs in API Manager.
+- Publishing versioned APIs to Anypoint Exchange.
+- Registering APIs in Anypoint API Manager.
 - Deploying APIs to Anypoint Flex Gateway.
 - Applying policies programmatically.
 - Promoting APIs across environments.
 
-The emphasis is on **automation-first usage of the Anypoint CLI**, suitable for scripting and CI/CD pipelines.
+The focus is on using the Anypoint CLI for automation, suitable for scripting and CI/CD pipelines.
 
 ## How to Use This Repository Today
 
 If you are exploring the repository as it is now:
 
-1. Start with [00-prerequisites/anypoint-cli-installation.md](./00-prerequisites/anypoint-cli-installation.md) to install the Anypoint CLI and [00-prerequisites/anypoint-cli-authentication.md](./00-prerequisites/anypoint-cli-authentication.md) to plan and decide your authentication approach.
-2. Review [01-lifecycle-overview/README.md](./01-lifecycle-overview/README.md) for a concise explanation of the automation lifecycle and the repository's organization.
+1. Start with [00-prerequisites/](./00-prerequisites):
+   - [00-prerequisites/anypoint-cli-installation](./00-prerequisites/anypoint-cli-installation.md) describes how to install the Anypoint CLI.
+   - [00-prerequisites/anypoint-cli-authentication](./00-prerequisites/anypoint-cli-authentication.md) discusses three authentication approaches when using the Anypoint CLI.
+   - [00-prerequisites/anypoint-cli-prerequisites-playbook](./00-prerequisites/anypoint-cli-prerequisites-playbook.md) provides tested, practical command-line patterns for preparing a workstation or CI/CD runner to use the Anypoint CLI. 
 
-Each completed section is designed to be **self-contained**, with clear lifecycle placement and forward navigation.
+2. Review [01-lifecycle-overview/README.md](./01-lifecycle-overview/README.md) for a concise explanation of the API management automation lifecycle and the organization and structure of this repository.
 
-> [!TIP]
-> Review the document  [anypoint-cli-prerequisites-playbook](./00-prerequisites/anypoint-cli-prerequisites-playbook.md) within the `00-prerequisites` section, which provides **tested, practical command-line patterns** for preparing a workstation or CI/CD runner to use the Anypoint Platform Command Line Interface (CLI). 
+Each completed section is designed to be self-contained, with clear lifecycle placement and forward navigation.
 
 ## Design Principles
 
 This repository follows a few guiding principles:
 
-- **Lifecycle-driven structure** rather than feature-by-feature documentation.
-- **Separation of concepts and execution**, with CLI playbooks capturing tested command patterns.
-- **Alignment with official MuleSoft documentation** without duplicating it.
-- **Practical experience over theoretical completeness**.
-
-## Relationship to the MuleSoft Blog
-
-The accompanying MuleSoft blog article explains *why* automating API management for Flex Gateway matters and how the Anypoint Platform components fit together. This repository focuses on implementing that lifecycle using the Anypoint CLI. Both resources are designed to complement each other, but this repository can still be used on its own.
+- Repository structured around the API management lifecycle, not feature-by-feature documentation.
+- Separation of concepts and execution, with CLI playbooks capturing tested command patterns.
+- Alignment with official MuleSoft documentation without duplicating it.
+- Practical experience over theoretical completeness.
 
 ## Contributing and Feedback
 

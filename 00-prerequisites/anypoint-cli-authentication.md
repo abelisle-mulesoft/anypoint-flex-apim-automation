@@ -2,11 +2,11 @@
 
 ## Abstract
 
-This informal document discusses three authentication approaches when using the Anypoint Platform Command-Line Interface (CLI) — or simply the Anypoint CLI. It recommends using a connected app and provides resources to help you get started.
+This informal document discusses three authentication approaches when using the Anypoint Platform Command-Line Interface (Anypoint CLI).
 
 ## Purpose
 
-The purpose of this document is to complement the documentation that MuleSoft publishes, not to replace it. It aims to provide additional documentation and examples to help you get started quickly.
+The purpose of this document is to complement MuleSoft’s official documentation, not to replace it. It describes and compares the available authentication methods for the Anypoint CLI. It explains practical considerations for each method and provides guidance on selecting an approach suitable for CI/CD pipelines, with a focus on using connected apps.
 
 ## Overview
 
@@ -36,7 +36,7 @@ Several articles within the MuleSoft documentation, as well as resources availab
 - On the **Connected Apps** page, you can optionally select a **Business Group** from the drop-down list.
 
 > [!TIP]
-> The Business Group selected directly influences the business groups available when adding scopes to the connected app. For example, selecting the root organization enables you to select the root organization and any of its descendants.
+> The selected *Business Group* directly influences which business groups are available when adding scopes to the connected app. For example, selecting the root organization lets you choose the root organization, its descendants, or both.
 >
 > As a reminder, a scope is a role with associated permissions that determines the actions the connected app can perform within a business group and environment [1]. 
 
@@ -67,24 +67,19 @@ Several articles within the MuleSoft documentation, as well as resources availab
 
 ## Where This Fits in the Lifecycle
 
-This document covers **authentication prerequisites** for automating API management with the Anypoint CLI.
+This document discusses authentication, which is required to automate API management with the Anypoint CLI. You must choose and configure your authentication method before running any CLI commands that interact with the Anypoint Platform, including:
 
-Authentication must be configured before executing any lifecycle stage that interacts with the Anypoint Platform, including:
+- Publishing versioned APIs to Anypoint Exchange.
+- Registering APIs in Anypoint API Manager.
+- Deploying APIs to Anypoint Flex Gateway.
+- Applying policies programmatically.
+- Promoting APIs across environments.
 
-- Publishing assets to Anypoint Exchange
-- Registering APIs in API Manager
-- Deploying APIs to Anypoint Flex Gateway
-- Applying policies and promoting APIs across environments
+Once authentication is in place, continue with the API management lifecycle for Flex Gateway starting at:
 
-Once authentication is in place, continue with the lifecycle starting at:
+- [02-exchange-cataloging/publish-assets-to-anypoint-exchange](../02-exchange-cataloging/publish-assets-to-anypoint-exchange.md)
 
-- [02-exchange-cataloging/publish-assets-to-anypoint-exchange.md](../02-exchange-cataloging/publish-assets-to-anypoint-exchange.md)
-
-For a high-level view of the full automation lifecycle and how these stages relate to one another, see:
-
-- [01-lifecycle-overview/README.md](../01-lifecycle-overview/README.md)
-
-
+Review [01-lifecycle-overview/README.md](file:///Users/abelisle/Documents/GitHub/Mule-Docs/anypoint-flex-apim-automation/01-lifecycle-overview/README.md) for a concise explanation of the API management automation lifecycle and how these stages relate to one another.
 
 # References
 

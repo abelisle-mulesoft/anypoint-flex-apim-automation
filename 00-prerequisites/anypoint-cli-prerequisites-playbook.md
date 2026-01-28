@@ -1,11 +1,12 @@
 # Anypoint CLI Prerequisites – CLI Playbook
 
-This playbook provides **tested, practical command-line patterns** for preparing a workstation or CI/CD runner to use the Anypoint Platform Command Line Interface (CLI).
+## Abstract
 
-It focuses on **installation, verification, and basic smoke testing** required before automating API management tasks such as cataloging APIs, registering them in API Manager, and deploying them to Anypoint Flex Gateway.
+This playbook provides tested, practical command-line patterns for preparing a workstation or CI/CD runner to use the Anypoint Platform Command Line Interface (CLI). 
 
-> [!NOTE]
-> While the [official documentation](https://docs.mulesoft.com/anypoint-cli/latest/install) specifies `Node.js` versions 18.0.0 to 20.0.0, all examples in this repository have been authored and successfully tested with `Node.js` 22.20.0 LTS and `npm` 11.6.2. This indicates that newer LTS versions of Node.js may also work in practice, even if they are not explicitly listed as supported.
+## Purpose
+
+The purpose of this document is to complement MuleSoft’s official documentation, not to replace it. It consolidates prerequisite steps, validation checks, and common failure patterns to help ensure a consistent and reliable starting point for automating API management with the Anypoint CLI. 
 
 ## Scope and Assumptions
 
@@ -17,7 +18,7 @@ This playbook assumes that:
 - Authentication strategy is addressed separately (for example, connected apps).
 
 This playbook does **not** cover:
-- API lifecycle automation.
+- Automation of the API management lifecycle.
 - CI/CD pipeline design.
 - Policy configuration or deployment workflows.
 
@@ -25,9 +26,9 @@ This playbook does **not** cover:
 
 Use this document as:
 
-- A **repeatable checklist** for setting up new machines or build agents.
-- A **reference for troubleshooting installation issues**.
-- A **baseline validation step** before running automation scripts.
+- A repeatable checklist for setting up new machines or build agents.
+- A reference for troubleshooting installation issues.
+- A baseline validation step before running automation scripts.
 
 All commands have been tested and are safe to reuse once adapted to your environment.
 
@@ -43,7 +44,7 @@ The Anypoint CLI depends on the following tools:
 
 ## Verify or Install Node.js and npm
 
-Using **nvm** is strongly recommended to ensure predictable Node.js versions across environments.
+Using nvm is strongly recommended to ensure predictable Node.js versions across environments.
 
 ### Check Current Versions
 
@@ -68,7 +69,10 @@ Load `nvm` without restarting the shell:
 
 ### Install the Latest Node.js LTS Version
 
-Install the **latest available LTS version** of Node.js:
+> [!NOTE]
+> While the [official documentation](https://docs.mulesoft.com/anypoint-cli/latest/install) specifies `Node.js` versions 18.0.0 to 20.0.0, all examples in this repository have been authored and successfully tested with `Node.js` 22.20.0 LTS and `npm` 11.6.2. This indicates that newer LTS versions of Node.js may also work in practice, even if they are not explicitly listed as supported.
+
+Install the latest available LTS version of Node.js:
 
 ```shell
 nvm install --lts
@@ -81,9 +85,6 @@ Verify the installation:
 node -v
 npm -v
 ```
-
-> **Note**  
-> Although this repository was authored using Node.js 22.x, the Anypoint CLI does not require that specific version. Using the latest LTS version helps ensure security updates and long-term support.
 
 ### Upgrade npm (If Needed)
 
@@ -181,5 +182,12 @@ Expected result:
 
 ## Relationship to the Lifecycle
 
-This playbook supports the **prerequisites stage** of the automated API management lifecycle described in the MuleSoft blog article **_Automating API Management for Flex Gateway with the Anypoint CLI_**. It should be completed before executing any Exchange, API Manager, or Flex Gateway automation.
+This playbook covers the prerequisites for automating API management with the Anypoint CLI. Complete the prerequisites before running any CLI commands that interact with the Anypoint Platform, including:
 
+- Publishing versioned APIs to Anypoint Exchange.
+- Registering APIs in Anypoint API Manager.
+- Deploying APIs to Anypoint Flex Gateway.
+- Applying policies programmatically.
+- Promoting APIs across environments.
+
+Review [01-lifecycle-overview/README](file:///Users/abelisle/Documents/GitHub/Mule-Docs/anypoint-flex-apim-automation/01-lifecycle-overview/README.md) for a concise explanation of the API management automation lifecycle and how these stages relate to one another.
